@@ -1,0 +1,9 @@
+package vn.iotstar.service;
+
+import vn.iotstar.models.UserModel;
+
+public interface IUserService {
+	
+	UserModel login(String username, String password);
+	UserModel get(String username);
+}

@@ -25,4 +25,53 @@ public class UserServiceImpl implements IUserService{
 		
 	}
 
+
+	@Override
+	public UserModel FindByUserName(String username) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public void insert(UserModel user) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public UserModel findByEmail(String email) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public boolean register(String username, String password, String email, String fullname, String phone) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	@Override
+	public boolean checkExistEmail(String email) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	@Override
+	public boolean checkExistUsername(String username) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	@Override
+	public boolean checkExistPhone(String phone) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

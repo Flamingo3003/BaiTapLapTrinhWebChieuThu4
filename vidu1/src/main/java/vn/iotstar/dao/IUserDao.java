@@ -13,6 +13,15 @@ public interface IUserDao {
 	void insert(UserModel user);
 	
 	UserModel get(String username);
-		
+	
+	UserModel findByUserName(String username);
+	
+	UserModel findByEmail(String email);
+	
+	boolean checkExistEmail(String email);
+	    
+	boolean checkExistUsername(String username);
+	    
+	boolean checkExistPhone(String phone);
 	
 }

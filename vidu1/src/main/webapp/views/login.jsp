@@ -1,134 +1,132 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-
-
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Đăng Nhập Vào Hệ Thống</title>
+    <title>Đăng Nhập</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #74ABE2, #5563DE);
+            height: 100vh;
             display: flex;
-            justify-content: center;
             align-items: center;
-            min-height: 100vh;
+            justify-content: center;
             margin: 0;
         }
-
-        .login-box {
+        .container {
             background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             padding: 40px;
-            border-radius: 6px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
             width: 360px;
+            animation: fadeIn 0.8s ease;
         }
-
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
         h2 {
             text-align: center;
             color: #333;
             margin-bottom: 30px;
-            font-weight: 500;
+            font-weight: 600;
         }
-        
-        /* CSS cho thông báo lỗi */
         .alert-danger {
-            background-color: #f8d7da;
-            color: #721c24;
-            padding: 12px;
-            margin-bottom: 20px;
-            border: 1px solid #f5c6cb;
-            border-radius: 4px;
+            background-color: #ffebee;
+            color: #c62828;
+            padding: 10px;
+            border-radius: 8px;
             text-align: center;
-            font-size: 15px;
-        }
-
-        .input-group {
+            font-size: 14px;
             margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            padding: 8px 10px;
-            /* Màu nền xanh nhạt giống trong hình */
-            background-color: #f0f7ff; 
+            border: 1px solid #ffcdd2;
         }
-
+        .input-group {
+            position: relative;
+            margin-bottom: 20px;
+        }
         .input-group i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
             color: #888;
-            margin-right: 10px;
-            font-size: 18px;
         }
-
         .input-group input {
-            border: none;
-            outline: none;
-            padding: 5px 0;
             width: 100%;
-            background-color: transparent;
-            font-size: 16px;
+            padding: 12px 15px 12px 45px; /* Để chừa chỗ cho icon */
+            border: 1px solid #ddd;
+            border-radius: 30px; /* Bo tròn input */
+            box-sizing: border-box;
+            font-size: 15px;
+            transition: all 0.3s;
+            background: #f9f9f9;
         }
-
-        .options-group {
+        .input-group input:focus {
+            border-color: #5563DE;
+            background: #fff;
+            outline: none;
+            box-shadow: 0 0 8px rgba(85, 99, 222, 0.2);
+        }
+        .options {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 25px;
             font-size: 14px;
+            margin-bottom: 25px;
         }
-
-        .options-group label {
-            color: #555;
+        .options label {
             cursor: pointer;
+            color: #555;
         }
-
-        .options-group a {
-            color: #007bff;
+        .options a {
+            color: #5563DE;
             text-decoration: none;
+            font-weight: 600;
         }
-
-        .btn-login {
+        button {
             width: 100%;
             padding: 12px;
-            /* Màu xanh dương giống trong hình */
-            background-color: #007bff; 
+            background: linear-gradient(to right, #5563DE, #74ABE2);
             color: white;
             border: none;
-            border-radius: 4px;
-            cursor: pointer;
+            border-radius: 30px;
             font-size: 16px;
             font-weight: bold;
-            transition: background-color 0.3s;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
-
-        .btn-login:hover {
-            background-color: #0056b3;
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(85, 99, 222, 0.4);
         }
-
-        .register-link {
+        .footer-text {
             text-align: center;
-            margin-top: 35px;
-            font-size: 15px;
-            color: #777;
+            margin-top: 25px;
+            font-size: 14px;
+            color: #666;
         }
-
-        .register-link a {
-            color: #007bff;
+        .footer-text a {
+            color: #5563DE;
             text-decoration: none;
             font-weight: bold;
+        }
+        .footer-text a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
-    <div class="login-box">
-        <h2>Đăng Nhập Vào Hệ Thống</h2>
+
+    <div class="container">
+        <h2>👋 Đăng Nhập</h2>
 
         <c:if test="${not empty requestScope.alert}">
             <div class="alert-danger">
-                ${requestScope.alert}
+                <i class="fa-solid fa-circle-exclamation"></i> ${requestScope.alert}
             </div>
         </c:if>
 
@@ -144,20 +142,21 @@
                 <input type="password" name="password" placeholder="Mật khẩu" required>
             </div>
 
-            <div class="options-group">
+            <div class="options">
                 <div>
                     <input type="checkbox" id="remember" name="remember">
                     <label for="remember">Nhớ tôi</label>
                 </div>
-                <a href="/forgot-password">Quên mật khẩu?</a>
+                <a href="${pageContext.request.contextPath}/forgot-password">Quên mật khẩu?</a>
             </div>
 
-            <button type="submit" class="btn-login">Đăng nhập</button>
+            <button type="submit">ĐĂNG NHẬP</button>
         </form>
 
-        <p class="register-link">
-            Nếu bạn chưa có tài khoản trên hệ thống, thì hãy <a href="/register">Đăng ký</a>
+        <p class="footer-text">
+            Bạn chưa có tài khoản? <a href="${pageContext.request.contextPath}/register">Đăng ký ngay</a>
         </p>
     </div>
+
 </body>
 </html>

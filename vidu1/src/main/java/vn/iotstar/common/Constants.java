@@ -13,6 +13,7 @@ public final class Constants {
     public static final String COOKIE_REMEMBER = "username"; // Tên cookie
     public static final int COOKIE_MAX_AGE_SECONDS = 30 * 60; // Thời gian sống (30 phút)
     
+    public static final String DIR = "D:\\upload";
     // Các hằng số khác (ví dụ: đường dẫn)
     // public static final String UPLOAD_PATH = "/uploads/";
 }
